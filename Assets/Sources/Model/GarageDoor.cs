@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sources.View;
 
-public class GarageDoor : MonoBehaviour
+namespace Sources.Model
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GarageDoor : MonoBehaviour
     {
-        
-    }
+        private GarageDoorView _garageDoorView;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public GarageDoor(GarageDoorView garageDoorView)
+        {
+            _garageDoorView = garageDoorView;
+
+            _garageDoorView.Open();
+        }
     }
 }
