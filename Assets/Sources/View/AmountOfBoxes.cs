@@ -10,8 +10,8 @@ namespace Sources.View
         [SerializeField] private Text _text;
 
         private Storage _storage;
-        private int _currentAmount = 3;
-        private int _startAmount = 3;
+        private int _currentAmount = 9;
+        private int _startAmount = 9;
 
         [Inject]
         public void Inject(Storage storage)

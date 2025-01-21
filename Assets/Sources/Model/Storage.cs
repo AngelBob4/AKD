@@ -4,7 +4,7 @@ namespace Sources.Model
 {
     public class Storage
     {
-        private int _maxObjects = 3;
+        private int _maxObjects = 9;
         private int _currentObjects = 0;
 
         public event Action GameOver;

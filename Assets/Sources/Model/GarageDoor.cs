@@ -1,9 +1,8 @@
-using UnityEngine;
 using Sources.View;
 
 namespace Sources.Model
 {
-    public class GarageDoor : MonoBehaviour
+    public class GarageDoor
     {
         private GarageDoorView _garageDoorView;
 

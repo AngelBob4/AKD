@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.Model
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement
     {
         private PlayerMovementView _playerMovementView;
 

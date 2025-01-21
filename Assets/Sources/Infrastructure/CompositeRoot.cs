@@ -17,8 +17,8 @@ namespace Sources.Infrastructure
 
         private void Start()
         {
-            _garageDoor = new GarageDoor(_garageDoorView);
             _playerMovement = new PlayerMovement(_playerMovementView);
+            _garageDoor = new GarageDoor(_garageDoorView);
 
             _playerInput.Init(_playerMovement, _joystick);
         }
