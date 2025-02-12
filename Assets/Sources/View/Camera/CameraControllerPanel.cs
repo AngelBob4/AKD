@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Sources.View.Camera
+namespace Sources.View.Cam
 {
     public class CameraControllerPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {

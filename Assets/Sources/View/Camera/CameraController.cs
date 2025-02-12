@@ -1,62 +1,28 @@
 using UnityEngine;
 
-namespace Sources.View.Camera
+namespace Sources.View.Cam
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private CameraControllerPanel cameraControllerPanel;
+        [SerializeField] private Transform _playerCamera;
+        [SerializeField] private Transform _player;
 
-        public float sensitivity = 2.0f;
-        public float sensitivityPanelRotate = 1;
-        public float maxYAngle = 80.0f;
-        private float rotationX = 0.0f;
+        private float lookSpeedX = 10f;
+        private float lookSpeedY = 10f;
 
-        private void Update()
+        public void HandleLook()
         {
-            float mouseX = 0;
-            float mouseY = 0;
-
-            if (!IsMobileDevice())
+            if (Input.touchCount > 0)
             {
-                if (cameraControllerPanel.Pressed)
-                {
-                    foreach (Touch touch in Input.touches)
-                    {
-                        if (touch.phase == TouchPhase.Moved)
-                        {
-                            mouseY = touch.deltaPosition.y * sensitivityPanelRotate;
-                            mouseX = touch.deltaPosition.x * sensitivityPanelRotate;
-                        }
+                Touch touch = Input.GetTouch(0);
 
-                        if (touch.phase == TouchPhase.Stationary)
-                        {
-                            mouseY = 0;
-                            mouseX = 0;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                mouseX = Input.GetAxis("Mouse X") * sensitivity;
-                mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-            }
+                float touchX = touch.deltaPosition.x * lookSpeedX * Time.deltaTime;
+                float touchY = touch.deltaPosition.y * lookSpeedY * Time.deltaTime;
 
-            transform.parent.Rotate(Vector3.up * mouseX * sensitivity);
-            rotationX -= mouseY * sensitivity;
-            rotationX = Mathf.Clamp(rotationX, -maxYAngle, maxYAngle);
-            transform.localRotation = Quaternion.Euler(rotationX, 0.0f, 0.0f);
-        }
+                _player.Rotate(0, touchX, 0); 
 
-        private bool IsMobileDevice()
-        {
-            if (SystemInfo.deviceType == DeviceType.Handheld)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                float currentRotationX = _playerCamera.localRotation.eulerAngles.x - touchY;
+                _playerCamera.localRotation = Quaternion.Euler(currentRotationX, 0f, 0f);
             }
         }
     }
